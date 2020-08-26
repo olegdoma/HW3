@@ -11,7 +11,7 @@ public class Main {
     phonebook.add("Vas1", "1234");
     phonebook.add("Vas2", "12345");
 
-    phonebook.get("Vas0");
+    phonebook.get("Vas4");
 
     }
 }

@@ -1,35 +1,36 @@
 package Ex2;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class Phonebook {
     String name;
     String phoneNumber;
 
-    Map<String, LinkedList> phoneBook = new LinkedHashMap<>();
+    Map<String, ArrayList> phoneBook = new HashMap<>();
 
     public void add(String name, String phoneNumber){
-        LinkedList<String> phoneNumbers = new LinkedList<>();
-        if (phoneBook.containsKey(name)){
-            phoneNumbers = phoneBook.get(name);
+        if (phoneBook.containsKey(name)) {
+            ArrayList phoneNumbers = phoneBook.get(name);
+            if (phoneNumbers.contains(phoneNumber)) {
+                System.out.println("Номер существует");
+            } else {
+                phoneNumbers.add(phoneNumber);
+                    }
         }
-        else {
-            phoneNumbers.addLast(phoneNumber);
-        }
+        else{
+        ArrayList phoneNumbers = new ArrayList(Collections.singletonList(phoneNumber));
         phoneBook.put(name, phoneNumbers);
-
+        }
     }
-    public void get(String inputName){
-        phoneBook.forEach((k, v) -> {
-            if (inputName.equals(k)){
-                System.out.println(k + ":" + v);
-            }
 
-        });
+    public void get(String name){
+        if (phoneBook.containsKey(name)){
+            System.out.println(name + ':' + phoneBook.get(name));
+        }else{
+            System.out.println("Такого имени нет");
+        }
+
     }
 
 }
